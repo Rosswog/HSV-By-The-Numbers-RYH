@@ -87,8 +87,9 @@ v.1.0 - James Beswick (@jbesw) - contact me with any questions!
         xhr.setRequestHeader('Accept', 'application/json');
 		    xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+        console.log('Packaged: Run');
 		    //xhr.setRequestHeader('x-api-key', 'XEVIS0u6CN7YCdp7b3seI230S7udvi4e26XtHV5R');
-
+        console.log('Packaged: ', JSON.stringify(xhr));
         // Send the collected data as JSON
         xhr.send(JSON.stringify(data));
 
@@ -96,9 +97,11 @@ v.1.0 - James Beswick (@jbesw) - contact me with any questions!
           if (response.target.status === 200) {
             form.reset();
             submitResponse.innerHTML = 'Form submitted. Success!';
+            console.log('Sent Status: 200';
           } 
           else {
             submitResponse.innerHTML = 'Error! Please try again.';
+            console.log('Sent Status: Error Not 200';
             console.error(JSON.parse(response.target.response).message);
           }
         };    
