@@ -1,0 +1,95 @@
+<!doctype html>
+<!-- Template from https://getbootstrap.com/docs/4.3/getting-started/introduction/ -->
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+    <form id="contact-form" method="post">
+        <h4>Name:</h4>
+        <input type="text" style="height:35px;" id="name-input" placeholder="Enter name here…" class="form-control" style="width:100%;" /><br/>
+        <h4>Phone:</h4>
+        <input type="phone" style="height:35px;" id="phone-input" placeholder="Enter phone number" class="form-control" style="width:100%;"/><br/>
+        <h4>Email:</h4>
+        <input type="email" style="height:35px;" id="email-input" placeholder="Enter email here…" class="form-control" style="width:100%;"/><br/>
+        <h4>How can we help you?</h4>
+        <textarea id="description-input" rows="3" placeholder="Enter your message…" class="form-control" style="width:100%;"></textarea><br/>
+        <div class="g-recaptcha" data-sitekey="6Lc7cVMUAAAAAM1yxf64wrmO8gvi1ys" class="form-control" style="width:100%;"></div>
+        <button type="button" onClick="submitToAPI(event)" class="btn btn-lg" style="margin-top:20px;">Submit</button>
+    </form>
+    <script>
+    function submitToAPI(e) {
+        e.preventDefault();
+        var URL = "https://4f3yi7k5gl.execute-api.us-east-1.amazonaws.com/One/MailMeFormDevOps";
+
+                var Namere = /[A-Za-z]{1}[A-Za-z]/;
+                if (!Namere.test($("#name-input").val())) {
+                            alert ("Name can not less than 2 char");
+                    return;
+                }
+                var mobilere = /[0-9]{10}/;
+                if (!mobilere.test($("#phone-input").val())) {
+                    alert ("Please enter valid mobile number");
+                    return;
+                }
+                if ($("#email-input").val()=="") {
+                    alert ("Please enter your email id");
+                    return;
+                }
+
+                var reeamil = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
+                if (!reeamil.test($("#email-input").val())) {
+                    alert ("Please enter valid email address");
+                    return;
+                }
+
+        var name = $("#name-input").val();
+        var phone = $("#phone-input").val();
+        var email = $("#email-input").val();
+        var desc = $("#description-input").val();
+        var data = {
+            name : name,
+            phone : phone,
+            email : email,
+            desc : desc
+            };
+        console.log('Packaged: ', JSON.stringify(data));
+        $.ajax({
+            type: "POST",
+            url : "https://4f3yi7k5gl.execute-api.us-east-1.amazonaws.com/One/MailMeFormDevOps",
+            dataType: "json",
+            crossDomain: "true",
+            contentType: "application/json; charset=utf-8",
+            //Access-Control-Allow-Origin: "*",
+            data: JSON.stringify(data),
+
+            
+            success: function () {
+            // clear form and show a success message
+            alert("Successfull");
+            document.getElementById("contact-form").reset();
+        location.reload();
+            },
+            error: function () {
+            // show an error message
+            alert("UnSuccessfull");
+            console.error(JSON.parse(response.target.response).message);
+            }});
+        }
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
