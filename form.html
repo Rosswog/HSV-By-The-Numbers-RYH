@@ -84,9 +84,9 @@ v.1.0 - James Beswick (@jbesw) - contact me with any questions!
         // Create the AJAX request
         var xhr = new XMLHttpRequest();
         xhr.open(form.method, formURL, true);
-        xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
-		    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-        xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://www.thepetercat.com');
+        xhr.setRequestHeader('Accept', 'application/json');
+		    xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 		    //xhr.setRequestHeader('x-api-key', 'XEVIS0u6CN7YCdp7b3seI230S7udvi4e26XtHV5R');
 
         // Send the collected data as JSON
@@ -96,7 +96,8 @@ v.1.0 - James Beswick (@jbesw) - contact me with any questions!
           if (response.target.status === 200) {
             form.reset();
             submitResponse.innerHTML = 'Form submitted. Success!';
-          } else {
+          } 
+          else {
             submitResponse.innerHTML = 'Error! Please try again.';
             console.error(JSON.parse(response.target.response).message);
           }
