@@ -13,11 +13,9 @@
   </head>
   <body>
 
-    <form id="contact-form" method="post">
+    <form id="contact-form" method="PUT">
         <h4>Name:</h4>
         <input type="text" style="height:35px;" id="name-input" placeholder="Enter name here…" class="form-control" style="width:100%;" /><br/>
-        <h4>Phone:</h4>
-        <input type="phone" style="height:35px;" id="phone-input" placeholder="Enter phone number" class="form-control" style="width:100%;"/><br/>
         <h4>Email:</h4>
         <input type="email" style="height:35px;" id="email-input" placeholder="Enter email here…" class="form-control" style="width:100%;"/><br/>
         <h4>How can we help you?</h4>
@@ -32,16 +30,11 @@
 
                 var Namere = /[A-Za-z]{1}[A-Za-z]/;
                 if (!Namere.test($("#name-input").val())) {
-                            alert ("Name can not less than 2 char");
-                    return;
-                }
-                var mobilere = /[0-9]{10}/;
-                if (!mobilere.test($("#phone-input").val())) {
-                    alert ("Please enter valid mobile number");
+                            alert ("Name can not be less than 2 characters");
                     return;
                 }
                 if ($("#email-input").val()=="") {
-                    alert ("Please enter your email id");
+                    alert ("Please enter your email");
                     return;
                 }
 
@@ -52,25 +45,26 @@
                 }
 
         var name = $("#name-input").val();
-        var phone = $("#phone-input").val();
+        
         var email = $("#email-input").val();
         var desc = $("#description-input").val();
         var data = {
+            origin : "https://thepetercat.com",
+            id : "3",
             name : name,
-            phone : phone,
             email : email,
-            desc : desc
+            body : desc
             };
 
         console.log('Packaged: ', JSON.stringify(data));
 
         $.ajax({
-            type: "POST",
+            type: "PUT",
             url : "https://4f3yi7k5gl.execute-api.us-east-1.amazonaws.com/One/MailMeFormDevOps",
             dataType: "json",
             crossDomain: "true",
             contentType: "application/json; charset=utf-8",
-            //Access-Control-Allow-Origin: "*",
+            headers: "Access-Control-Allow-Origin": "https://thepetercat.com",
             data: JSON.stringify(data),
 
             
