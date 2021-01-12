@@ -84,10 +84,9 @@ v.1.0 - James Beswick (@jbesw) - contact me with any questions!
         // Create the AJAX request
         var xhr = new XMLHttpRequest();
         xhr.open(form.method, formURL, true);
-        xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+        xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://thepetercat.com');
 		    xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.setRequestHeader('Access-Control-Allow-Methods', 'PUT');
-        console.log('Packaged: Run');
+        console.log('Packaged: Headers Set');
 		    //xhr.setRequestHeader('x-api-key', 'XEVIS0u6CN7YCdp7b3seI230S7udvi4e26XtHV5R');
         console.log('Packaged: ', JSON.stringify(xhr));
         // Send the collected data as JSON
