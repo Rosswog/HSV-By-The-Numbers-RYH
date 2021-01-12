@@ -84,9 +84,9 @@ v.1.0 - James Beswick (@jbesw) - contact me with any questions!
         // Create the AJAX request
         var xhr = new XMLHttpRequest();
         xhr.open(form.method, formURL, true);
-        xhr.setRequestHeader('Accept', 'application/json');
+        xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 		    xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+        xhr.setRequestHeader('Access-Control-Allow-Methods', 'PUT');
         console.log('Packaged: Run');
 		    //xhr.setRequestHeader('x-api-key', 'XEVIS0u6CN7YCdp7b3seI230S7udvi4e26XtHV5R');
         console.log('Packaged: ', JSON.stringify(xhr));
@@ -101,7 +101,7 @@ v.1.0 - James Beswick (@jbesw) - contact me with any questions!
           } 
           else {
             submitResponse.innerHTML = 'Error! Please try again.';
-            console.log('Sent Status: Error Not 200';
+            console.log('Sent Status: Error Not 200');
             console.error(JSON.parse(response.target.response).message);
           }
         };    
