@@ -86,38 +86,7 @@
 						<header>
 							<h2>Report</h2>
 							<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>
-							<p style="width:95%" data-value="95">NBCT's Certified</p>
-													<progress max="100" value="95" class="python">
-														<!-- Browsers that support HTML5 progress element will ignore the html inside `progress` element. Whereas older browsers will ignore the `progress` element and instead render the html inside it. -->
-														<div class="progress-bar">
-															<span style="width: 95%">95%</span>
-														</div>
-													</progress>
-							<p style="width:75%" data-value="75">NBCT's Certified</p>
-								<progress max="100" value="75" class="python">
-									<!-- Browsers that support HTML5 progress element will ignore the html inside `progress` element. Whereas older browsers will ignore the `progress` element and instead render the html inside it. -->
-									<div class="progress-bar">
-										<span style="width: 75%">75%</span>
-									</div>
-								</progress>
 								
-								<!-- PHP -->
-							<p style="width:65%" data-value="65">NBCT's Certified</p>
-								<progress max="100" value="65" class="php">
-									<!-- Browsers that support HTML5 progress element will ignore the html inside `progress` element. Whereas older browsers will ignore the `progress` element and instead render the html inside it. -->
-									<div class="progress-bar">
-										<span style="width: 65%">65%</span>
-									</div>
-								</progress>
-								
-								<!-- Node.js -->
-							<p style="width:35%" data-value="35">NBCT's Certified</p>
-							<progress max="100" value="35" class="node-js">
-									<!-- Browsers that support HTML5 progress element will ignore the html inside `progress` element. Whereas older browsers will ignore the `progress` element and instead render the html inside it. -->
-									<div class="progress-bar">
-										<span style="width: 35%">35%</span>
-									</div>
-								</progress>	
 						</header>
 						<section id="three" class="wrapper style3 special">
 							<div class="inner">
@@ -125,6 +94,39 @@
 									<h2>Current NBCT Density by School District</h2>
 									<p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
 									fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
+
+									<p style="width:95%" data-value="95">Total Raise</p>
+													<progress max="100" value="95" class="python">
+														<!-- Browsers that support HTML5 progress element will ignore the html inside `progress` element. Whereas older browsers will ignore the `progress` element and instead render the html inside it. -->
+														<div class="progress-bar">
+															<span style="width: 95%">95%</span>
+														</div>
+													</progress>
+									<p style="width:75%" data-value="75">NBCT's Certified</p>
+										<progress max="100" value="75" class="python">
+											<!-- Browsers that support HTML5 progress element will ignore the html inside `progress` element. Whereas older browsers will ignore the `progress` element and instead render the html inside it. -->
+											<div class="progress-bar">
+												<span style="width: 75%">75%</span>
+											</div>
+										</progress>
+										
+										<!-- PHP -->
+									<p style="width:65%" data-value="65">NBCT Pipeline</p>
+										<progress max="100" value="65" class="php">
+											<!-- Browsers that support HTML5 progress element will ignore the html inside `progress` element. Whereas older browsers will ignore the `progress` element and instead render the html inside it. -->
+											<div class="progress-bar">
+												<span style="width: 65%">65%</span>
+											</div>
+										</progress>
+										
+										<!-- Node.js -->
+									<p style="width:35%" data-value="35">NBCT's Certified</p>
+									<progress max="100" value="35" class="node-js">
+											<!-- Browsers that support HTML5 progress element will ignore the html inside `progress` element. Whereas older browsers will ignore the `progress` element and instead render the html inside it. -->
+											<div class="progress-bar">
+												<span style="width: 35%">35%</span>
+											</div>
+										</progress>
 									
 								</header>
 							</div>
@@ -338,17 +340,14 @@
 			<script type="text/javascript">
 				var map = L.map("map").setView([33.484935, -86.695286], 7);
 
-				L.tileLayer(
-				"https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoiam9uYXRoYW5yIiwiYSI6ImNrbGt6YTdmNjB3azIyb2x5OTk3cjhzZzcifQ.SMacf0l7J1Zd1uDpl87y2A",
-				{
-					maxZoom: 18,
-					attribution:
-					'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-					'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-					'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-					id: "mapbox.light"
-				}
-				).addTo(map);
+				L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+						attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+						tileSize: 512,
+						maxZoom: 18,
+						zoomOffset: -1,
+						id: 'mapbox/dark-v10',
+						accessToken: 'pk.eyJ1Ijoiam9uYXRoYW5yIiwiYSI6ImNrbGt6YTdmNjB3azIyb2x5OTk3cjhzZzcifQ.SMacf0l7J1Zd1uDpl87y2A'
+					}).addTo(map);
 
 				// control that shows state info on hover
 				var info = L.control();
