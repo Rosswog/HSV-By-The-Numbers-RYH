@@ -471,6 +471,34 @@
 
 				legend.addTo(map);
 
+				var legend = L.control({ position: "bottomleft" });
+
+				legend.onAdd = function(map) {
+				var div = L.DomUtil.create("div", "info legend"),
+					grades = [0, 10, 200000, 500000, 1000000, 2000000, 5000000, 10000000],
+					labels = [],
+					from,
+					to;
+
+				for (var i = 0; i < grades.length; i++) {
+					from = grades[i];
+					to = grades[i + 1];
+
+					labels.push(
+					'<i style="background:' +
+						getColor(from + 1) +
+						'"></i> ' +
+						from +
+						(to ? "&ndash;" + to : "+")
+					);
+				}
+
+				div.innerHTML = labels.join("<br>");
+				return div;
+				};
+
+				legend.addTo(map);
+
 			</script>
 	</body>
 </html>
